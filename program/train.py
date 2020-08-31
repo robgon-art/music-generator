@@ -107,8 +107,6 @@ class Trainer:
                         notes.append("NULL")
 
                 prev_offset = element.offset
-                
-            notes.append("END")
 
         with open("notes/" + self.model_name, "wb") as filepath:
             pickle.dump(notes, filepath)
@@ -121,8 +119,9 @@ class Trainer:
         pitchnames = sorted(set(item for item in notes))
 
         # create a dictionary to map pitches to integers
-        note_to_int = dict((note, number + 1) for number, note in enumerate(pitchnames))
+        note_to_int = dict((note, number + 2) for number, note in enumerate(pitchnames))
         note_to_int["NULL"] = 0
+        note_to_int["START"] = 0
 
         network_input = []
         network_output = []
