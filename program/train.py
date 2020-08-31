@@ -148,7 +148,7 @@ class Trainer:
             self.model_name + "-weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
         )
         checkpoint = ModelCheckpoint(
-            filepath, monitor="loss", verbose=0, save_best_only=True, mode="min"
+            filepath, period=10, monitor="loss", verbose=0, save_best_only=True, mode="min"
         )
         callbacks_list = [checkpoint]
         self.model.fit(
