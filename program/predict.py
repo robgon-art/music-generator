@@ -9,6 +9,7 @@ from keras.layers import Dropout
 from keras.layers import LSTM
 from keras.layers import Activation
 from keras.layers import Bidirectional
+from keras_self_attention import SeqSelfAttention
 
 TIMESTEP = 0.25
 SEQUENCE_LEN = int(8 / TIMESTEP)
