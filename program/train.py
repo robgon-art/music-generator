@@ -12,7 +12,7 @@ from keras.layers import Dropout
 from keras.layers import LSTM
 from keras.layers import Activation
 from keras.layers import Bidirectional
-keras_self_attention import SeqSelfAttention
+from keras_self_attention import SeqSelfAttention
 import numpy
 from music21 import instrument, note, stream, chord, converter, duration
 
