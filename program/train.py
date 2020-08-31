@@ -82,7 +82,8 @@ class Trainer:
                 print(f"Could not parse {file}")
                 print(e)
                 continue
-
+            
+            notes.append("START")
             notes_to_parse = None
 
             try:  # file has instrument parts
@@ -106,6 +107,8 @@ class Trainer:
                         notes.append("NULL")
 
                 prev_offset = element.offset
+                
+            notes.append("END")
 
         with open("notes/" + self.model_name, "wb") as filepath:
             pickle.dump(notes, filepath)
