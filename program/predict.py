@@ -111,7 +111,7 @@ class Generator:
 
         # generate verse 1
         verse1_pattern, verse1_prediction_output = get_start()
-        for note_index in range(4 * SEQUENCE_LEN):
+        for note_index in range(16 * SEQUENCE_LEN):
             prediction_input = numpy.reshape(
                 verse1_pattern, (1, len(verse1_pattern), 1)
             )
@@ -128,67 +128,67 @@ class Generator:
             verse1_pattern = verse1_pattern[1 : len(verse1_pattern)]
 
         # generate verse 2
-        verse2_pattern = verse1_pattern
-        verse2_prediction_output = []
-        for note_index in range(4 * SEQUENCE_LEN):
-            prediction_input = numpy.reshape(
-                verse2_pattern, (1, len(verse2_pattern), 1)
-            )
-            prediction_input = prediction_input / float(n_vocab)
+#         verse2_pattern = verse1_pattern
+#         verse2_prediction_output = []
+#         for note_index in range(4 * SEQUENCE_LEN):
+#             prediction_input = numpy.reshape(
+#                 verse2_pattern, (1, len(verse2_pattern), 1)
+#             )
+#             prediction_input = prediction_input / float(n_vocab)
 
-            prediction = model.predict(prediction_input, verbose=0)
+#             prediction = model.predict(prediction_input, verbose=0)
 
-            index = numpy.argmax(prediction)
-            print("index", index)
-            result = int_to_note[index]
-            verse2_prediction_output.append(result)
+#             index = numpy.argmax(prediction)
+#             print("index", index)
+#             result = int_to_note[index]
+#             verse2_prediction_output.append(result)
 
-            verse2_pattern.append(index)
-            verse2_pattern = verse2_pattern[1 : len(verse2_pattern)]
+#             verse2_pattern.append(index)
+#             verse2_pattern = verse2_pattern[1 : len(verse2_pattern)]
 
-        # generate chorus
-        chorus_pattern, chorus_prediction_output = get_start()
-        for note_index in range(4 * SEQUENCE_LEN):
-            prediction_input = numpy.reshape(
-                chorus_pattern, (1, len(chorus_pattern), 1)
-            )
-            prediction_input = prediction_input / float(n_vocab)
+#         # generate chorus
+#         chorus_pattern, chorus_prediction_output = get_start()
+#         for note_index in range(4 * SEQUENCE_LEN):
+#             prediction_input = numpy.reshape(
+#                 chorus_pattern, (1, len(chorus_pattern), 1)
+#             )
+#             prediction_input = prediction_input / float(n_vocab)
 
-            prediction = model.predict(prediction_input, verbose=0)
+#             prediction = model.predict(prediction_input, verbose=0)
 
-            index = numpy.argmax(prediction)
-            print("index", index)
-            result = int_to_note[index]
-            chorus_prediction_output.append(result)
+#             index = numpy.argmax(prediction)
+#             print("index", index)
+#             result = int_to_note[index]
+#             chorus_prediction_output.append(result)
 
-            chorus_pattern.append(index)
-            chorus_pattern = chorus_pattern[1 : len(chorus_pattern)]
+#             chorus_pattern.append(index)
+#             chorus_pattern = chorus_pattern[1 : len(chorus_pattern)]
 
-        # generate bridge
-        bridge_pattern, bridge_prediction_output = get_start()
-        for note_index in range(4 * SEQUENCE_LEN):
-            prediction_input = numpy.reshape(
-                bridge_pattern, (1, len(bridge_pattern), 1)
-            )
-            prediction_input = prediction_input / float(n_vocab)
+#         # generate bridge
+#         bridge_pattern, bridge_prediction_output = get_start()
+#         for note_index in range(4 * SEQUENCE_LEN):
+#             prediction_input = numpy.reshape(
+#                 bridge_pattern, (1, len(bridge_pattern), 1)
+#             )
+#             prediction_input = prediction_input / float(n_vocab)
 
-            prediction = model.predict(prediction_input, verbose=0)
+#             prediction = model.predict(prediction_input, verbose=0)
 
-            index = numpy.argmax(prediction)
-            print("index", index)
-            result = int_to_note[index]
-            bridge_prediction_output.append(result)
+#             index = numpy.argmax(prediction)
+#             print("index", index)
+#             result = int_to_note[index]
+#             bridge_prediction_output.append(result)
 
-            bridge_pattern.append(index)
-            bridge_pattern = bridge_pattern[1 : len(bridge_pattern)]
+#             bridge_pattern.append(index)
+#             bridge_pattern = bridge_pattern[1 : len(bridge_pattern)]
 
         return (
             verse1_prediction_output
-            + chorus_prediction_output
-            + verse2_prediction_output
-            + chorus_prediction_output
-            + bridge_prediction_output
-            + chorus_prediction_output
+#             + chorus_prediction_output
+#             + verse2_prediction_output
+#             + chorus_prediction_output
+#             + bridge_prediction_output
+#             + chorus_prediction_output
         )
 
     def create_midi(self, prediction_output):
