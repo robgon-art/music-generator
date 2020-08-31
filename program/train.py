@@ -83,7 +83,7 @@ class Trainer:
                 print(e)
                 continue
             
-            notes.append("START")
+#             notes.append("START")
             notes_to_parse = None
 
             try:  # file has instrument parts
@@ -119,9 +119,9 @@ class Trainer:
         pitchnames = sorted(set(item for item in notes))
 
         # create a dictionary to map pitches to integers
-        note_to_int = dict((note, number + 2) for number, note in enumerate(pitchnames))
+        note_to_int = dict((note, number + 1) for number, note in enumerate(pitchnames))
         note_to_int["NULL"] = 0
-        note_to_int["START"] = 0
+#         note_to_int["START"] = 1
 
         network_input = []
         network_output = []
@@ -175,7 +175,7 @@ def create_network(network_input, n_vocab):
     )
     model.add(SeqSelfAttention(attention_activation='sigmoid'))
     model.add(Dropout(0.3))
-    model.add(Bidirectional(LSTM(512)))
+    model.add(LSTM(512))
     model.add(Dense(n_vocab))
     model.add(Activation("softmax"))
     model.compile(loss="categorical_crossentropy", optimizer="rmsprop")
