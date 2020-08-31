@@ -12,6 +12,7 @@ from keras.layers import Dropout
 from keras.layers import LSTM
 from keras.layers import Activation
 from keras.layers import Bidirectional
+keras_self_attention import SeqSelfAttention
 import numpy
 from music21 import instrument, note, stream, chord, converter, duration
 
@@ -170,6 +171,7 @@ def create_network(network_input, n_vocab):
             input_shape=(network_input.shape[1], network_input.shape[2]),
         )
     )
+    model.add(SeqSelfAttention(attention_activation='sigmoid'))
     model.add(Dropout(0.3))
     model.add(Bidirectional(LSTM(512)))
     model.add(Dense(n_vocab))
